@@ -115,9 +115,11 @@ export default function App() {
       {error?.toString() && <Alert message={error?.toString() ?? null} />}
       <div className="w-full max-w-5xl  p-8">
         {loading ? (
-          [...Array(3)]?.map(() => {
-            return <Loader type="card" />;
-          })
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {[...Array(3)]?.map(() => {
+              return <Loader type="card" />;
+            })}
+          </div>
         ) : meals?.length > 0 ? (
           <>
             <Pagination
@@ -133,6 +135,7 @@ export default function App() {
           meals={meals}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
+          loading={loading}
         />
       </div>
     </div>
