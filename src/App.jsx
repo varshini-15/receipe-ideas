@@ -144,7 +144,9 @@ export default function App() {
             />
           </>
         ) : (
-          <div className="text-center">No Results Found</div>
+          <div className="text-center">
+            Didn't find any receipes this time. Try fewer or simpler ingredients
+          </div>
         )}
         <PaginationFooter
           meals={meals}
