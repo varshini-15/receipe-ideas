@@ -1,4 +1,4 @@
-# 🍳 Taylor’s Kitchen
+# 🍳 Receipe Ideas - Taylor’s Kitchen
 
 **Hey, Taylor! Let’s get cooking!**  
 We’ll turn your ingredients into something amazing. 🥗  
