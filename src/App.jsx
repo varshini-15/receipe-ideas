@@ -34,27 +34,42 @@ export default function App() {
     setError("");
     try {
       const allResults = [];
+      let commonMeals;
 
-      for (const ingredient of ingredients) {
+      if (input && ingredients?.length === 0) {
         const response = await fetch(
-          `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`
+          `https://www.themealdb.com/api/json/v1/1/filter.php?i=${input}`
         );
         const data = await response.json();
 
         if (data.meals) {
-          allResults.push(data.meals);
+          allResults.push(...data.meals);
+        }
+      } else {
+        for (const ingredient of ingredients) {
+          const response = await fetch(
+            `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`
+          );
+          const data = await response.json();
+
+          if (data.meals) {
+            allResults.push(data.meals);
+          }
         }
       }
-
       if (allResults.length === 0) {
         setMeals([]);
         setLoading(false);
         return;
       }
 
-      const commonMeals = allResults.reduce((a, b) =>
-        a.filter((mealA) => b.some((mealB) => mealB.idMeal === mealA.idMeal))
-      );
+      if (input && ingredients?.length === 0) {
+        commonMeals = allResults;
+      } else {
+        commonMeals = allResults.reduce((a, b) =>
+          a.filter((mealA) => b.some((mealB) => mealB.idMeal === mealA.idMeal))
+        );
+      }
 
       setMeals(commonMeals);
     } catch (err) {
