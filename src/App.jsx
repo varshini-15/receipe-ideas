@@ -7,6 +7,7 @@ import Loader from "./components/Loader";
 import Pagination from "./Pagination";
 import PaginationFooter from "./PaginationFooter";
 import Alert from "./components/Alert";
+import bgImage from "./assets/image.png";
 
 export default function App() {
   const [input, setInput] = useState("");
@@ -84,7 +85,7 @@ export default function App() {
       <div
         className="w-full flex flex-col items-center justify-center text-center py-16 px-4 bg-cover bg-center bg-no-repeat relative"
         style={{
-          backgroundImage: "url('src/assets/image.png')",
+          backgroundImage: `url(${bgImage})`,
         }}
       >
         <div className="absolute inset-0 from-white/10 via-white/50 to-white"></div>
@@ -145,7 +146,8 @@ export default function App() {
           </>
         ) : (
           <div className="text-center">
-            Didn't find any receipes this time. Try fewer or simpler ingredients
+            No recipes found this time — let’s switch up the ingredients and try
+            again!
           </div>
         )}
         <PaginationFooter
